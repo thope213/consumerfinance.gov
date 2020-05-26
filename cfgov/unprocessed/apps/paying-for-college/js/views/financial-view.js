@@ -18,6 +18,7 @@ const financialView = {
   _actionPlanChoices: null,
   _gradProgramContent: null,
   _undergradProgramContent: null,
+  _otherBorrowingButtons: null,
 
   /**
    * Listeners for INPUT fields and radio buttons
@@ -26,6 +27,13 @@ const financialView = {
     financialView._costsOfferButtons.forEach( elem => {
       const events = {
         click: this._handleCostsButtonClick
+      };
+      bindEvent( elem, events );
+    } );
+
+    financialView._otherBorrowingButtons.forEach( elem => {
+      const events = {
+        click: this._handleOtherLoanButtonClick
       };
       bindEvent( elem, events );
     } );
@@ -107,6 +115,19 @@ const financialView = {
     target.classList.remove( 'a-btn__disabled' );
     offerContent.classList.add( 'active' );
     costsContent.classList.add( 'active' );
+  },
+
+  /**
+   * Event handling for private and PLUS loans
+   * @param {Object} event - Triggering event
+   */
+  _handleOtherLoanButtonClick: function( event ) {
+    const target = event.target;
+    const answer = target.dataset.loans_type;
+    if ( answer === 'private' ) {
+      updateState.byProperty( 'private-loan-section', 'active' );
+    }
+
   },
 
   /**
@@ -206,29 +227,6 @@ const financialView = {
   },
 
   /**
-    * updateViewByProgramType - Update the financial view to reflect program type
-    * @param {String} programType - Selected program level
-    */
-  updateViewByProgramType: function( programType ) {
-    console.log( 'updateViewByProgramType: ' + programType );
-    if ( programType === 'graduate' ) {
-      this._gradProgramContent.forEach( elem => {
-        elem.classList.remove( 'hidden' );
-      } );
-      this._undergradProgramContent.forEach( elem => {
-        elem.classList.add( 'hidden' );
-      } );
-    } else {
-      this._undergradProgramContent.forEach( elem => {
-        elem.classList.remove( 'hidden' );
-      } );
-      this._gradProgramContent.forEach( elem => {
-        elem.classList.add( 'hidden' );
-      } );
-    }
-  },
-
-  /**
     * initializeFinancialValues - Create financial model values based on the input
     * fields that exist in the financial view
     */
@@ -245,8 +243,7 @@ const financialView = {
     this._costsOfferButtons = document.querySelectorAll( '.costs_button-section button' );
     this._actionPlanChoices = document.querySelectorAll( '.action-plan_choices .m-form-field' );
     this._actionPlanSeeSteps = document.getElementById( 'action-plan_see-your-steps' );
-    this._gradProgramContent = document.querySelectorAll( '[data-program-type-content="grad"]' );
-    this._undergradProgramContent = document.querySelectorAll( '[data-program-type-content="undergrad"]' );
+    this._otherBorrowingButtons = document.querySelectorAll( '.other-borrowing-btns button' );
     this._addInputListeners();
     this._addButtonListeners();
     this.initializeFinancialValues();

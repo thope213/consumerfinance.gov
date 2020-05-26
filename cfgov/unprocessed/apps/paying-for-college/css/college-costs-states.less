@@ -1,0 +1,40 @@
+
+main.college-costs {
+	.private-loan-section,
+	.parentPlus-loan-section,
+	.undergrad-content,
+	.grad-content {
+		display: none;
+	}
+
+	&[data-state_program-type="grad"] {
+		.grad-content {
+			display: block;
+		}
+	}
+
+	&[data-state_program-type="undergrad"] {
+		.undergrad-content {
+			display: block;
+		}
+	}
+
+	&[data-state_private-loan-section="active"] {
+		.private-loan-section {
+			display: block;
+		}
+	}
+
+	&[data-state_parentplus-loan-section="active"] {
+		.parentplus-loan-section {
+			display: block;
+		}
+	}
+
+	&[data-state_gradplus-loan-section="active"] {
+		.gradplus-loan-section {
+			display: block;
+		}
+	}
+
+}

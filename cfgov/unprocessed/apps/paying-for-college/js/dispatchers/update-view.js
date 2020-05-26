@@ -1,6 +1,7 @@
 import { chartView } from '../views/chart-view.js';
 import { expensesView } from '../views/expenses-view.js';
 import { financialView } from '../views/financial-view.js';
+import { navigationView } from '../views/navigation-view.js';
 import { schoolView } from '../views/school-view.js';
 
 const updateExpensesView = () => {
@@ -9,10 +10,6 @@ const updateExpensesView = () => {
 
 const updateFinancialView = () => {
   financialView.updateFinancialItems();
-};
-
-const updateViewByProgramType = programType => {
-  financialView.updateViewByProgramType( programType );
 };
 
 const updateCostOfBorrowingChart = () => {
@@ -39,6 +36,10 @@ const updateRepaymentMeterChart = () => {
   chartView.updateRepaymentMeterChart();
 };
 
+const updateNavigationView = () => {
+  navigationView.updateView();
+}
+
 export {
   updateExpensesView,
   updateFinancialView,
@@ -48,5 +49,5 @@ export {
   updateAffordingChart,
   updateGradMeterChart,
   updateRepaymentMeterChart,
-  updateViewByProgramType
+  updateNavigationView
 };

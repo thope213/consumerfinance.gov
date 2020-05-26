@@ -14,8 +14,6 @@ const updateState = {
    */
   activeSection: item => {
     stateModel.setValue( 'activeSection', item );
-
-    navigationView.update();
   },
 
   getStarted: bool => {

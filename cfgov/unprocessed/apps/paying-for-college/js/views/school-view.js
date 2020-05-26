@@ -6,7 +6,7 @@ import { bindEvent } from '../../../../js/modules/util/dom-events';
 import { updateSchoolData } from '../dispatchers/update-models.js';
 import { updateState } from '../dispatchers/update-state.js';
 import { getSchoolValue } from '../dispatchers/get-model-values.js';
-import { updateFinancialView, updateGradMeterChart, updateRepaymentMeterChart, updateViewByProgramType } from '../dispatchers/update-view.js';
+import { updateFinancialView, updateGradMeterChart, updateRepaymentMeterChart } from '../dispatchers/update-view.js';
 
 
 const schoolView = {
@@ -77,7 +77,11 @@ const schoolView = {
     updateState.byProperty( prop, value );
 
     if ( prop === 'programType' ) {
-      updateViewByProgramType( value );
+      if ( value === 'graduate') {
+        updateState.byProperty( 'program-type', 'grad')
+      } else {
+        updateState.byProperty( 'program-type', 'undergrad')
+      }
     }
 
     const checkedCount = schoolView._schoolInfo

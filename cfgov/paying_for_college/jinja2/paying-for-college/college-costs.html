@@ -644,7 +644,7 @@
                 </div>
             </div>
 
-            <div class="grants-scholarships_grad-fellowships" data-program-type-content="grad">
+            <div class="grants-scholarships_grad-fellowships grad-content">
                 <h3>Fellowships and assistantships</h3>
 
                 <p>In addition to work-study, graduate students may be eligible to earn additional funding from fellowships and/or assistantships.</p>
@@ -704,11 +704,11 @@
 
             <p> Any student loan must be repaid, with interest. Federal loans include some borrower protections and repayment options that are not typically offered by private and other non-federal loans.</p>
 
-            <div class="federal-loans_grad-content" data-program-type-content="grad">
+            <div class="federal-loans_grad-content grad-content">
                 <p>Graduate students have access to two types of federal loans, Direct Unsubsidized and Grad PLUS. For both, there are limits on how much you can borrow. We will focus on Direct Unsubsidized here; you will have the opportunity to add Grad PLUS to your plan later.</p>
             </div>
 
-            <div class="federal-loans_undergrad-content" data-program-type-content="undergrad">
+            <div class="federal-loans_undergrad-content undergrad-content">
                 <p>Undergraduates have access to two types of federal loans, <strong>Direct Subsidized</strong> and <strong>Direct Unsubsidized</strong>. For both, there are limits on how much you can borrow, and you will start repayment 6 months after you leave school or drop below half-time enrollment. Subsidized loans are cheaper than unsubsidized loans because the government pays the accruing interest until you enter repayment. You must demonstrate financial need on your FAFSA to qualify for subsidized loans, but anyone can take out unsubsidized loans.</p>
             </div>
 
@@ -1620,9 +1620,7 @@
                     <button class="o-expandable_header o-expandable_target financial-item"
                             title="Expand content">
                         <div class="financial-item_label-wrapper">
-                            <label class="form-label" for="XXX">
-                                Loans from your state, this school, or a nonprofit
-                            </label>
+                            Loans from your state, this school, or a nonprofit
                         </div>
                         <div class="financial-item_input-wrapper">
                             <span class="financial-item_total__debt" data-financial-item="total_otherLoans">$99,999</span>
@@ -1752,8 +1750,103 @@
                 </div>
 
                 <div class="other-borrowing-btns">
-                    <button class="a-btn a-btn__add">{{ svg_icon('plus-round') }} Add a private loan to your plan if you have an offer from a lender.</button>
-                    <button class="a-btn a-btn__add">{{ svg_icon('plus-round') }} Add a parent PLUS loan if you have been approved.</button>
+
+                    <button class="a-btn a-btn__add" data-loans_type="private">{{ svg_icon('plus-round') }} Add a private loan to your plan if you have an offer from a lender.</button>
+                    <div class="private-loan-section" data-state-segment="privateLoan">
+                        <div class="financial-item form-group_item financial-item__spaced">
+                            <div class="financial-item_label-wrapper">
+                                <label class="form-label" for="plan__privateLoan">
+                                    Private loan
+                                </label>
+                            </div>
+                            <div class="financial-item_input-wrapper">
+                                <input type="text" id="plan__privateLoan" name="plan__privateLoan" data-financial-item="loan_privateLoan1" autocorrect="off" value="0">
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__privateLoan1Rate">Interest rate (%)</span>
+                            </div>
+                    
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__privateLoan1Rate" class="financial-item" data-financial-item="rate_privateLoan1">9.99%</span>
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__privateLoan1Fee">Loan fee (%)</span>
+                            </div>
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__privateLoan1Fee" class="financial-item" data-financial-item="fee_privateLoan1">9.99%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="undergrad-content parentplus-loan-section" data-state-segment="parentPlus">
+                        <button class="a-btn a-btn__add" data-loans_type="parentPlus">{{ svg_icon('plus-round') }} Add a parent PLUS loan if you have been approved.</button>
+                        <div class="parentplus-loan-section" data-state-segment="parentPlus">
+                            <div class="financial-item form-group_item financial-item__spaced">
+                                <div class="financial-item_label-wrapper">
+                                    <label class="form-label" for="plan__parentPlus">
+                                        Parent PLUS Loan
+                                    </label>
+                                </div>
+                                <div class="financial-item_input-wrapper">
+                                    <input type="text" id="plan__parentPlus" name="plan__parentPlus" data-financial-item="fedLoan_parentPlus" autocorrect="off" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__parentPlusRate">Interest rate (%)</span>
+                                <span class="label-note">For loans disbursed between July 1, 2019, and June 30, 2020</span>
+                            </div>
+                    
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__parentPlusRate" class="financial-item" data-financial-item="rate_parentPlus">9.99%</span>
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__parentPlusFee">Loan fee (%)</span>
+                            </div>
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__parentPlusFee" class="financial-item" data-financial-item="fee_parentPlus">9.99%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grad-content gradplus-loan-section" data-state-segment="gradPlus">
+                        <button class="a-btn a-btn__add" data-loans_type="gradPlus">{{ svg_icon('plus-round') }} Add a grad PLUS loan if you have been approved.</button>
+                        <div class="financial-item form-group_item financial-item__spaced">
+                            <div class="financial-item_label-wrapper">
+                                <label class="form-label" for="plan__gradPlus">
+                                    Grad PLUS Loan
+                                </label>
+                            </div>
+                            <div class="financial-item_input-wrapper">
+                                <input type="text" id="plan__gradPlus" name="plan__gradPlus" data-financial-item="fedLoan_gradPlus" autocorrect="off" value="0">
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__gradPlusRate">Interest rate (%)</span>
+                                <span class="label-note">For loans disbursed between July 1, 2019, and June 30, 2020</span>
+                            </div>
+                    
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__gradPlusRate" class="financial-item" data-financial-item="rate_gradPlus">9.99%</span>
+                            </div>
+                        </div>
+                        <div class="financial-item form-group_item">
+                            <div class="financial-item_label-wrapper">
+                                <span class="static-label" for="loans__gradPlusFee">Loan fee (%)</span>
+                            </div>
+                            <div class="financial-item_input-wrapper">
+                                <span id="loans__gradPlusFee" class="financial-item" data-financial-item="fee_gradPlus">9.99%</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -1783,7 +1876,7 @@
                 <h4 class="number-callout_header">Median salary of this school’s recent students</h4>
                 <div class="number-callout_value"><span data-financial-item="salary_annual">$48,200</span></div>
             </div>
-    <p> Median earnings of students working and not enrolled 6 years after starting at this school—includes students who did not graduate</p>
+            <p> Median earnings of students working and not enrolled 6 years after starting at this school—includes students who did not graduate</p>
 
             <h4>Your projected debt vs. the median salary of recent students</h4>
             <div id="max-debt-guideline_chart"></div>
@@ -2024,7 +2117,7 @@
         <section class="college-costs_tool-section school-results" data-tool-section="school-results">
             <h2>Compare the school to others</h2>
 
-            <div class="school-results_grad-content" data-program-type-content="grad">
+            <div class="school-results_grad-content grad-content">
                 <p>Now that you understand how much debt you’re considering, make sure to research how well the school serves students. You’re investing a lot—make sure it pays off.</p>
                 <p>Ask the school to provide the metrics you care about, such as:</p>
                 <ul>
@@ -2038,7 +2131,7 @@
             </div>
 
 
-            <div class="school-results_undergrad-content" data-program-type-content="undergrad">
+            <div class="school-results_undergrad-content undergrad-content">
                 <p>Now that you understand how much debt you’re considering, let’s look at some statistics that indicate how well the school serves students. You’re investing a lot—make sure it pays off.</p>
 
                 <h3 class="header_bottom-line"><span data-school-item="name"></span></h3>

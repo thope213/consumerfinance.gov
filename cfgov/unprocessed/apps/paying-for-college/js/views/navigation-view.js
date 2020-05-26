@@ -40,6 +40,7 @@ const navigationView = {
     updateState.activeSection( 'school-info' );
     // The user should be sent back to the top of the P4C content
     window.scrollTo( 0, document.querySelector( '.college-costs' ).offsetTop );
+    navigationView.updateView();
   },
 
   _handleNavButtonClick: function( event ) {
@@ -63,9 +64,6 @@ const navigationView = {
   _handleNextButtonClick: function( event ) {
     const target = event.target;
     updateState.activeSection( event.target.dataset.buttonTarget );
-    // The user should be sent back to the top of the P4C content
-    window.scrollTo( 0, document.querySelector( '.college-costs' ).offsetTop );
-
   },
 
   _updateSideNav: function( activeName ) {
@@ -81,7 +79,7 @@ const navigationView = {
 
   },
 
-  _updateSection: function( activeName ) {
+  _showAndHideSections: function( activeName ) {
     const query = '.college-costs_tool-section[data-tool-section="' + activeName + '"]';
     const activeSection = document.querySelector( query );
 
@@ -90,6 +88,15 @@ const navigationView = {
     } );
 
     activeSection.classList.add( 'active' );
+  },
+
+  updateView: function() {
+    const started = getStateValue( 'gotStarted' );
+    if ( started ) {
+      const activeName = getStateValue( 'activeSection' );
+      this._updateSideNav( activeName );
+      this._showAndHideSections( activeName );
+    }
   },
 
   init: function( body ) {
@@ -105,18 +112,9 @@ const navigationView = {
 
     this._addButtonListeners();
 
-    this.update();
+    this.updateView();
 
   },
-
-  update: function() {
-    const started = getStateValue( 'gotStarted' );
-    if ( started ) {
-      const activeName = getStateValue( 'activeSection' );
-      this._updateSideNav( activeName );
-      this._updateSection( activeName );
-    }
-  }
 
 };
 
