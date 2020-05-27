@@ -7,6 +7,7 @@ based on these costs.
 import { getSchoolValue, getStateValue } from '../dispatchers/get-model-values.js';
 import { recalculateExpenses } from '../dispatchers/update-models.js';
 import { debtCalculator } from '../util/debt-calculator.js';
+import { setUrlQueryString } from '../util/url-parameter-utils.js';
 import { stringToNum } from '../util/number-utils.js';
 
 // Please excuse some uses of underscore for code/HTML property clarity!
@@ -33,6 +34,7 @@ const financialModel = {
     if ( financialModel.values.hasOwnProperty( name ) ) {
       financialModel.values[name] = value;
       financialModel.recalculate();
+      setUrlQueryString();
     }
   },
 

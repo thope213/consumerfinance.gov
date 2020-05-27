@@ -5,6 +5,7 @@
 */
 
 import { bindEvent } from '../../../../js/modules/util/dom-events';
+import { setUrlQueryString } from '../util/url-parameter-utils.js';
 import { updateNavigationView } from '../dispatchers/update-view.js';
 
 const stateModel = {
@@ -30,6 +31,8 @@ const stateModel = {
       console.log( 'pushState fired: ' + this.values.activeSection );
       updateNavigationView();
     }
+    setUrlQueryString();
+
   },
 
   /**

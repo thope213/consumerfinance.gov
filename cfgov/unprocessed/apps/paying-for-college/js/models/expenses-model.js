@@ -2,6 +2,7 @@
 import { updateExpensesView, updateFinancialView } from '../dispatchers/update-view.js';
 import { getExpenses } from '../dispatchers/get-api-values.js';
 import { getFinancialValue } from '../dispatchers/get-model-values.js';
+import { setUrlQueryString } from '../util/url-parameter-utils.js';
 import { stringToNum } from '../util/number-utils.js';
 
 // Please excuse some uses of underscore for code/HTML property clarity!
@@ -106,7 +107,9 @@ const expensesModel = {
     if ( typeof expensesModel.values.item_childcare === 'undefined' ) {
       expensesModel.values.item_childcare = 0;
     }
+    
     expensesModel.calculateTotals();
+    setUrlQueryString();
   },
 
   /**
