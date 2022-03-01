@@ -19,19 +19,29 @@ footer.init();
 /**
  * Chuck's nonsense.
  */
+
+ const h1selector = 'h1:not( .h2, .h3, .h4, .h5, .h6 ), .h1';
+ const h2selector = 'h2:not( .h1, .h3, .h4, .h5, .h6 ), .h2';
+ const h3selector = 'h3:not( .h1, .h2, .h4, .h5, .h6 ), .h3';
+ const h4selector = 'h4:not( .h1, .h2, .h3, .h5, .h6 ), .h4';
+ const h5selector = 'h5:not( .h1, .h2, .h3, .h4, .h6 ), .h5';
+ const h6selector = 'h6:not( .h1, .h2, .h3, .h4, .h5 ), .h6';
+
+ const headers = {
+   'h1': { selector: h1selector },
+   'h2': { selector: h2selector },
+   'h3': { selector: h3selector },
+   'h4': { selector: h4selector }
+ };
+
+
+
 function hTest() {
   let h2b = 300;
   let h3b = 300;
-  let h1selector = 'h1:not( .h2, .h3, .h4, .h5, .h6 ), .h1';
-  let h2selector = 'h2:not( .h1, .h3, .h4, .h5, .h6 ), .h2';
-  let h3selector = 'h3:not( .h1, .h2, .h4, .h5, .h6 ), .h3';
-  let h4selector = 'h4:not( .h1, .h2, .h3, .h5, .h6 ), .h4';
-  let h5selector = 'h5:not( .h1, .h2, .h3, .h4, .h6 ), .h5';
-  let h6selector = 'h6:not( .h1, .h2, .h3, .h4, .h5 ), .h6';
-
 
   function checkBold(element) {
-    var fontWeight = getComputedStyle( element ).fontWeight;
+    let fontWeight = getComputedStyle( element ).fontWeight;
     if (Number(fontWeight) > 400 || fontWeight === 'bold' || fontWeight === 'bolder') {
       return true;
     }
@@ -62,37 +72,60 @@ function hTest() {
 
   }
 
-  document.querySelector('#bolder-h1').addEventListener('click', ele => { bolderize( 'h1', h1selector ); } );
-  document.querySelector('#bolder-h2').addEventListener('click', ele => { bolderize( 'h2', h2selector ); } );
-  document.querySelector('#bolder-h3').addEventListener('click', ele => { bolderize( 'h3', h3selector ); } );
-  document.querySelector('#bolder-h4').addEventListener('click', ele => { bolderize( 'h4', h4selector ); } );
+  function resizer( target ) {
+    const elem = target.closest( 'button.h-resizer' );
 
-  document.addEventListener( 'DOMContentLoaded', function() {
-    const headers = {
-      'h1': { selector: h1selector },
-      'h2': { selector: h2selector },
-      'h3': { selector: h3selector },
-      'h4': { selector: h4selector }
-    };
+    const header = elem.dataset.header_name;
+    const resize = elem.dataset.header_resize;
+    const sizeElem = document.querySelector( '[data-h_size="' + header + '"]' );
+    const size = Number( sizeElem.innerText.replace(/\D/g,'') );
+    let newSize = size;
+    if ( resize === "bigger" ) {
+      newSize += 2;
+    } else if ( resize === "smaller" ) {
+      newSize -= 2;
+    }
 
-    for ( const key in headers) {
-      let element = document.querySelector( headers[key].selector );
+    if ( typeof header !== 'undefined' && typeof resize !== 'undefined' ) {
+        document.querySelectorAll( headers[header].selector )
+          .forEach( element => {
+            element.style.fontSize = newSize + 'px';
+          });
+        document.querySelector( '[data-h_size="' + header + '"]').innerText = newSize + 'px';
+    }
+  }
+
+  for ( const key in headers) {
+    let element = document.querySelector( headers[key].selector );
+    let button = document.querySelector( '#bolder-' + key );
+    if ( button === null ) {
+      console.log( 'null found: ' + key );
+    } else if ( element !== null ) {
+      let fontWeight = getComputedStyle( element ).fontWeight;
+      let fontSize = getComputedStyle( element ).fontSize;
+      if ( fontWeight === 'bold' || fontWeight === 'bolder' ) fontWeight = '700';
+
+      document.querySelector( '#bolder-' + key ).innerText = key + ' weight: ' + fontWeight;
+      document.querySelector( '[data-h_size="' + key + '"]' ).innerText = fontSize;
+    } else {
       let button = document.querySelector( '#bolder-' + key );
-      if ( button === null ) {
-        console.log( 'null found: ' + key );
-      } else if ( element !== null ) {
-        let fontWeight = getComputedStyle( element ).fontWeight;
-        if ( fontWeight === 'bold' || fontWeight === 'bolder' ) fontWeight = '700';
+      if ( button !== null ) button.innerText = key + ' weight: ???';
+    }
+  };
 
-        document.querySelector( '#bolder-' + key ).innerText = key + ' weight: ' + fontWeight;
-      } else {
-        let button = document.querySelector( '#bolder-' + key );
-        if ( button !== null ) button.innerText = key + ' weight: ' + fontWeight;
-      }
+  document.querySelector('#bolder-h1').addEventListener('click', event => { bolderize( 'h1', h1selector ); } );
+  document.querySelector('#bolder-h2').addEventListener('click', event => { bolderize( 'h2', h2selector ); } );
+  document.querySelector('#bolder-h3').addEventListener('click', event => { bolderize( 'h3', h3selector ); } );
+  document.querySelector('#bolder-h4').addEventListener('click', event => { bolderize( 'h4', h4selector ); } );
 
-    };
-  });
+  document.querySelectorAll( '.h-resizer')
+  .forEach( ele => {
+      ele.addEventListener( 'click', event => { resizer( event.target ) } );
+    });
 
 }
 
-hTest();
+
+document.addEventListener( 'DOMContentLoaded', function() {
+  hTest();
+} );

@@ -178,17 +178,44 @@
             </div>
         </div>{# END .o-footer-middle-left #}
 
-        <div id="footer"
+        <div id="header-tests"
           style="position: fixed; right: 10px; bottom: 10px;
-            background: #48b753; border: 1px solid black;
+            background: #bae0a2; border: 1px solid black;
             padding: 10px; font-size: 12px;">
-            <p style="text-align: center;"><strong>Header Tests</strong></p>
-            <p>
-              <button id="bolder-h1">H1 weight: ?</button>
-              <button id="bolder-h2">H2 weight: ?</button>
-              <button id="bolder-h3">H3 weight: ?</button>
-              <button id="bolder-h4">H4 weight: ?</button>
-            </p>
+            <table>
+                <tr>
+                  <td style="font-size: 1.2em; font-weight:600; text-align: center" colspan="4">Header testing</td>
+                </tr>
+
+              <tr>
+                <td><button id="bolder-h1">H1 weight: ?</button></td>
+                <td><button id="bolder-h2">H2 weight: ?</button></td>
+                <td><button id="bolder-h3">H3 weight: ?</button></td>
+                <td><button id="bolder-h4">H4 weight: ?</button></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong>H1:</strong> <span data-h_size="h1"></span>
+                  <button data-header_name="h1" data-header_resize="bigger" class="h-resizer">{{ svg_icon('up') }}</button>
+                  <button data-header_name="h1" data-header_resize="smaller" class="h-resizer">{{ svg_icon('down') }}</button>
+                </td>
+                <td>
+                  <strong>H2:</strong> <span data-h_size="h2"></span>
+                  <button data-header_name="h2" data-header_resize="bigger" class="h-resizer">{{ svg_icon('up') }}</button>
+                  <button data-header_name="h2" data-header_resize="smaller" class="h-resizer">{{ svg_icon('down') }}</button>
+                </td>
+                <td>
+                  <strong>H3:</strong> <span data-h_size="h3"></span>
+                  <button data-header_name="h3" data-header_resize="bigger" class="h-resizer">{{ svg_icon('up') }}</button>
+                  <button data-header_name="h3" data-header_resize="smaller" class="h-resizer">{{ svg_icon('down') }}</button>
+                </td>
+                <td>
+                  <strong>H4:</strong> <span data-h_size="h4"></span>
+                  <button data-header_name="h4" data-header_resize="bigger" class="h-resizer">{{ svg_icon('up') }}</button>
+                  <button data-header_name="h4" data-header_resize="smaller" class="h-resizer">{{ svg_icon('down') }}</button>
+                </td>
+              </tr>
+            </table>
           </div>
 
         <div class="o-footer-middle-right">
