@@ -48,6 +48,35 @@ function hTest() {
     return false;
   }
 
+  function AJizer() {
+
+    document.querySelectorAll( h1selector ).forEach( element => {
+      element.style.fontSize = '40px';
+      element.style.fontWeight = '700';
+    } );
+    document.querySelectorAll( h2selector ).forEach( element => {
+      element.style.fontSize = '32px';
+      element.style.fontWeight = '700';
+    } );
+    document.querySelectorAll( h3selector ).forEach( element => {
+      element.style.fontSize = '26px';
+      element.style.fontWeight = '500';
+    } );
+    document.querySelectorAll( h4selector ).forEach( element => {
+      element.style.fontSize = '20px';
+      element.style.fontWeight = '500';
+    } );
+  }
+
+  function cleanse() {
+    for ( let key in headers ) {
+      document.querySelectorAll( headers[key]['selector'] ).forEach( elem => {
+        elem.style.fontWeight = null;
+        elem.style.fontSize = null;
+      } );
+    }
+  }
+
   function bolderize( tag, selector ) {
     let element = document.querySelector( selector );
     let button = document.querySelector( '#bolder-' + tag );
@@ -118,6 +147,9 @@ function hTest() {
   document.querySelector('#bolder-h3').addEventListener('click', event => { bolderize( 'h3', h3selector ); } );
   document.querySelector('#bolder-h4').addEventListener('click', event => { bolderize( 'h4', h4selector ); } );
 
+  document.querySelector('#ajify').addEventListener('click', event => { AJizer(); } );
+  document.querySelector('#cleanse').addEventListener('click', event => { cleanse(); } );
+
   document.querySelectorAll( '.h-resizer')
   .forEach( ele => {
       ele.addEventListener( 'click', event => { resizer( event.target ) } );
@@ -126,6 +158,6 @@ function hTest() {
 }
 
 
-document.addEventListener( 'DOMContentLoaded', function() {
+window.addEventListener( 'load', function() {
   hTest();
 } );
