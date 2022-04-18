@@ -181,14 +181,17 @@
         <div id="header-tests"
           style="position: fixed; right: 10px; bottom: 10px;
             background: #bae0a2; border: 1px solid black;
-            padding: 10px; font-size: 12px;">
+            padding: 10px; font-size: 12px; z-index: 3;">
             <table>
                 <tr>
                   <td style="font-size: 1.2em; font-weight:600; text-align: center" colspan="4">Header testing</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button id="ajify">Proposed hierarchy</button></td>
-                    <td colspan="2"><button id="cleanse">Default hierarchy</button></td>
+                    <td>Set hierarchy: </td>
+                    <td colspan="1"><button id="cleanse">Current hierarchy</button></td>
+                    <td colspan="1"><button id="v1">New hierarchy v1</button></td>
+                    <td><button id="v2">New hierarchy v2</button></td>
+
                 </tr>
                 <tr>
                     <td><button id="bolder-h1">H1 weight: ?</button></td>

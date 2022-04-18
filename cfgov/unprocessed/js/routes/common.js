@@ -48,23 +48,45 @@ function hTest() {
     return false;
   }
 
-  function AJizer() {
+  function AJizer( version ) {
+
 
     document.querySelectorAll( h1selector ).forEach( element => {
-      element.style.fontSize = '40px';
-      element.style.fontWeight = '700';
+      if ( version === 'v1' ) {
+        element.style.fontSize = '40px';
+        element.style.fontWeight = '700';       
+      } else {
+        element.style.fontSize = null;
+        element.style.fontWeight = '600';
+      }
+
     } );
     document.querySelectorAll( h2selector ).forEach( element => {
-      element.style.fontSize = '32px';
-      element.style.fontWeight = '700';
+      if ( version === 'v1' ) {
+        element.style.fontSize = '32px';
+        element.style.fontWeight = '700';
+      } else {
+        element.style.fontSize = null;
+        element.style.fontWeight = '600';
+      }
     } );
     document.querySelectorAll( h3selector ).forEach( element => {
-      element.style.fontSize = '26px';
-      element.style.fontWeight = '500';
+      if ( version === 'v1' ) {
+        element.style.fontSize = '26px';
+        element.style.fontWeight = '500';
+      } else {
+        element.style.fontSize = null;
+        element.style.fontWeight = null;
+      }
     } );
     document.querySelectorAll( h4selector ).forEach( element => {
-      element.style.fontSize = '20px';
-      element.style.fontWeight = '500';
+      if ( version === 'v1' ) {
+        element.style.fontSize = '20px';
+        element.style.fontWeight = '500';
+      } else {
+        element.style.fontSize = null;
+        element.style.fontWeight = null;
+      }
     } );
   }
 
@@ -147,7 +169,8 @@ function hTest() {
   document.querySelector('#bolder-h3').addEventListener('click', event => { bolderize( 'h3', h3selector ); } );
   document.querySelector('#bolder-h4').addEventListener('click', event => { bolderize( 'h4', h4selector ); } );
 
-  document.querySelector('#ajify').addEventListener('click', event => { AJizer(); } );
+  document.querySelector('#v1').addEventListener('click', event => { AJizer( 'v1' ); } );
+  document.querySelector('#v2').addEventListener('click', event => { AJizer( 'v2' ); } );
   document.querySelector('#cleanse').addEventListener('click', event => { cleanse(); } );
 
   document.querySelectorAll( '.h-resizer')
