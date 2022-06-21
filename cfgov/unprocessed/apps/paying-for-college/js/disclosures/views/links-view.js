@@ -53,14 +53,15 @@ const linksView = {
    * @param {object} values Financial model values
    */
   setGraduationLink: function( values ) {
-    const gradURL = 'https://collegescorecard.ed.gov/school/?' + values.schoolID +
+    const cleanID = values.schoolID.replace(/[^a-z0-9]/gi, '')
+    const gradURL = 'https://collegescorecard.ed.gov/school/?' + cleanID +
     '#graduation';
     if ( gradURL ) {
       const $gradLink = $( '<a>', {
         'href': gradURL,
         'target': '_blank',
         'rel': 'noopener noreferrer',
-        'class': this.$gradLinkText.attr( 'class' )
+        'class': 'graduation-link a-link a-link__icon'
       } )
         .text( this.$gradLinkText.text() );
       this.$gradLinkText.replaceWith( $gradLink );
@@ -98,7 +99,7 @@ const linksView = {
         'href': schoolURL,
         'target': '_blank',
         'rel': 'noopener noreferrer',
-        'class': this.$schoolLinkText.attr( 'class' )
+        'class': 'school-links'
       } )
         .text( this.$schoolLinkText.text() );
       this.$schoolLinkText.replaceWith( $schoolLink );
@@ -115,7 +116,7 @@ const linksView = {
     let zip = '';
     // We're using a 50-mile radius, the most common Scorecard search
     const radius = '50';
-    const scorecardURL = this.$scorecardLink.attr( 'href' );
+    const scorecardURL = 'https://collegescorecard.ed.gov/school/?' + values.schoolID;
 
     if ( values.hasOwnProperty( 'cipCode' ) ) {
       pcip = values.cipCode.slice( 0, 2 );
