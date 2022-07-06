@@ -116,7 +116,7 @@ function getQueryVariables() {
     const pair = elem.split( '=' );
     const key = decodeURIComponent( pair[0] );
     const value = decodeURIComponent( pair[1] );
-    queryVariables[key] = value;
+    queryVariables[key] = value.replace(/[^a-z0-9.-]/gi, '');
   } );
 
   return queryVariables;
