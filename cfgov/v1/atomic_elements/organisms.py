@@ -14,6 +14,7 @@ from wagtail.images import blocks as images_blocks
 from wagtail.snippets.blocks import SnippetChooserBlock
 
 from taggit.models import Tag
+from wagtailcharts.blocks import ChartBlock
 from wagtailmedia.blocks import AbstractMediaChooserBlock
 
 from v1 import blocks as v1_blocks
@@ -565,6 +566,15 @@ class SimpleChart(blocks.StructBlock):
     class Media:
         js = ["simple-chart/simple-chart.js"]
         css = ["simple-chart.css"]
+
+
+class WagtailChartBlock(blocks.StreamBlock):
+    content = ChartBlock()
+
+    class Meta:
+        label = "WagtailCharts Chart"
+        icon = "image"
+        template = "_includes/organisms/wagtail-charts.html"
 
 
 class FullWidthText(blocks.StreamBlock):
