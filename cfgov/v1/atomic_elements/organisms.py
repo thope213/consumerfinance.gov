@@ -13,8 +13,8 @@ from wagtail.core.models import Page
 from wagtail.images import blocks as images_blocks
 from wagtail.snippets.blocks import SnippetChooserBlock
 
+import wagtailcharts.blocks
 from taggit.models import Tag
-from wagtailcharts.blocks import ChartBlock
 from wagtailmedia.blocks import AbstractMediaChooserBlock
 
 from v1 import blocks as v1_blocks
@@ -568,13 +568,13 @@ class SimpleChart(blocks.StructBlock):
         css = ["simple-chart.css"]
 
 
-class WagtailChartBlock(blocks.StreamBlock):
-    content = ChartBlock()
-
+class WagtailChartsChartBlock(wagtailcharts.blocks.ChartBlock):
     class Meta:
-        label = "WagtailCharts Chart"
+        label = "Wagtail Charts Chart"
         icon = "image"
-        template = "_includes/organisms/wagtail-charts.html"
+
+    class Media:
+        js = ["wagtail-charts-chart-block.js"]
 
 
 class FullWidthText(blocks.StreamBlock):
