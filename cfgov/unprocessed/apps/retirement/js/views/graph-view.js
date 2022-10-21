@@ -226,11 +226,14 @@ function validateBirthdayFields() {
     date and salary values, then updates the graph view with the returned data
     using a variety of view-updating functions */
 function getYourEstimates() {
-  const dataLang = document.querySelector( 'html' ).getAttribute( 'lang' );
   const dates = validateBirthdayFields();
   const salary = strToNum( $( '#salary-input' ).val() );
+  let dataLang = document.querySelector( 'html' ).getAttribute( 'lang' );
   let lifetimeData;
   let SSData;
+
+  // Validate language value
+  if ( ( ['en', 'es'] ).indexOf( dataLang ) < 0 ) dataLang = 'en';
 
   // Hide warnings, show loading indicator
   $( '.m-notification' ).slideUp();
