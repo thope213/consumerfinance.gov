@@ -1,4 +1,4 @@
-from datetime import datetime
+"""from datetime import datetime"""
 from functools import partial
 
 from django.conf import settings
@@ -78,7 +78,7 @@ urlpatterns = [
         r"^rural-or-underserved-tool/$",
         TemplateView.as_view(
             extra_context={
-                "years": [year for year in range(2014, datetime.now().year)],
+                "years": [year for year in range(2014, 2023)],
                 "mapbox_access_token": settings.MAPBOX_ACCESS_TOKEN,
             },
             template_name="rural-or-underserved/index.html",
