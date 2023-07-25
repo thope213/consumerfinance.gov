@@ -4,9 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
-    replaces = [('search', '0001_initial'), ('search', '0002_add_synonym_help_text')]
-
     initial = True
 
     dependencies = [
