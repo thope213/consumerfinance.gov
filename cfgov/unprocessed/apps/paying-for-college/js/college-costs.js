@@ -3,6 +3,7 @@ import { appView } from './college-costs/views/app-view.js';
 import { chartView } from './college-costs/views/chart-view.js';
 import { constantsModel } from './college-costs/models/constants-model.js';
 import { expensesModel } from './college-costs/models/expenses-model.js';
+import { basicInfoView } from './college-costs/views/basic-info-view.js';
 import { expensesView } from './college-costs/views/expenses-view.js';
 import { financialModel } from './college-costs/models/financial-model.js';
 import { financialView } from './college-costs/views/financial-view.js';
@@ -23,6 +24,7 @@ function init() {
   expensesView.init();
   financialModel.init();
   schoolView.init(body);
+  basicInfoView.init();
   financialView.init();
   navigationView.init(body, query.iped);
   chartView.init(body);
