@@ -754,11 +754,4 @@ WAGTAILADMIN_BASE_URL = os.getenv(
 DRAFTAIL_ANCHORS_RENDERER = "wagtail_draftail_anchors.rich_text.render_span"
 
 
-# Baking testing config
-INSTALLED_APPS += (
-    "bakery",
-    "wagtailbakery",
-    "archival",
-)
-BUILD_DIR = "/srv/cfgov/archive/"
-BAKERY_VIEWS = ("wagtailbakery.views.AllPagesView",)
+ARCHIVE_DIR = "/srv/cfgov/archive/"
