@@ -26,7 +26,7 @@ def export_page(page):
 
 
 def archive_page_data(page):
-    fs = apps.get_app_config("bakery").filesystem
+    fs = apps.get_app_config("archival").filesystem
 
     page_path = unquote(page.specific.url[1:])
     archive_path = path.join(settings.ARCHIVE_DIR, page_path)
