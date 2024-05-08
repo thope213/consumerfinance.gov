@@ -7,6 +7,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.utils.encoding import smart_str
 
 from wagtail import hooks
+from wagtail.models import get_streamfield_names
 
 from fs import path
 
@@ -18,6 +19,15 @@ def export_page(page):
         "path": page.specific.url,
         "data": page.serializable_data(),
     }
+
+    # Convert streamfields, which serialize as strings containing JSON, back
+    # into objects. This will keep the final JSON cleaner, and not with
+    # JSON-in-a-string-in-JSON
+    streamfield_names = get_streamfield_names(page.specific.__class__)
+    for streamfield_name in streamfield_names:
+        page_data["data"][streamfield_name] = json.loads(
+            page_data["data"][streamfield_name]
+        )
 
     page_json = json.dumps(
         page_data, ensure_ascii=False, indent=4, cls=DjangoJSONEncoder
