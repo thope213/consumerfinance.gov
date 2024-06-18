@@ -1,6 +1,10 @@
 .financial-item {
   margin-top: unit(30px / @base-font-size-px, em);
 
+  & + p {
+    margin-top: unit(30px / @base-font-size-px, em);
+  }
+
   &:not(&--flyout) {
     .financial-item__label,
     .financial-item__value {

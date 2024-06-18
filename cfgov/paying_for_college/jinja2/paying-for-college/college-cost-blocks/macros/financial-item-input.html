@@ -16,13 +16,15 @@
 
    value.id:                Input id.
 
+   value.class              css classes for the containing div
+
    value.value:             Input value.
 
    ========================================================================== #}
 
 {% macro render( value ) -%}
 {% set ht_id = 'ht_' ~ value.id %}
-<div class="financial-item">
+<div class="financial-item {{ value.class | safe if value.class else ''  }}">
     <div class="financial-item__label">
         <label class="a-label a-label--heading" for="{{ value.id }}">
             {{ value.label }}
